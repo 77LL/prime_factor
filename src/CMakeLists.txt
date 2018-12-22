@@ -5,6 +5,7 @@ set(sources
 
 # ヘッダ一覧
 set(headers
+	Solver.h
 	)
 
 set(target ${PROJECT_NAME})
