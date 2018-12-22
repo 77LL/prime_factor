@@ -1,36 +1,11 @@
+#include "Solver.h"
+
 #include <iostream>
 #include <vector>
 #include <utility>
 #include <chrono>
 
 using namespace std;
-
-template<class T>
-class Solver {
-public:
-	virtual void solve(T num) =  0;
-	void calc(T num){
-		chrono::system_clock::time_point start, end;
-
-    start = chrono::system_clock::now();
-		solve(num);
-		end = chrono::system_clock::now();
-
-		time = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count()) * 0.000001;
-	}
-	void show(ostream& os){
-		for( auto &val : result ){
-			os << "prim: " << val.first << ", order: " << val.second << endl;
-		}
-	}
-	void showTime(ostream& os){
-		os << "time: " << time << "[s]" << endl;
-	}
-
-protected:
-	vector< pair< T, T > > result;
-	double time;
-};
 
 template<class T>
 class Div1 : public Solver<T> {
@@ -48,16 +23,21 @@ public:
 };
 
 typedef long long type;
+template<class T>
+void output(T sol, type num){
+	sol.calc(num);
+	sol.show(cout);
+	sol.showTime(cout);
+}
+
 int main(int argc, char *argv[])
 {
-	type N;
-	cin >> N;
-
-	Div1<type> sol1;
-
-	sol1.calc(N);
-	sol1.show(cout);
-	sol1.showTime(cout);
+	vector<type> list = {12345,  1000000007, 5368709120, 12345678987654321};
+	for( auto &val : list ){
+		cout << "num: " << val << endl;
+		output( Div1<type>(), val );
+		cout << endl;
+	}
 
 	return 0;
 }
