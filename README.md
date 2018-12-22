@@ -7,3 +7,6 @@
 # 参考
 ## テンプレートクラスの継承について
 * https://qiita.com/kaityo256/items/2f24662a9ab8341ad6f4
+
+## 計測について
+* http://www.sanko-shoko.net/note.php?id=rnfd
