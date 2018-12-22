@@ -27,7 +27,8 @@ template<class T>
 class DivSqrt : public Solver<T> {
 public:
 	void solve(T num){
-		for( T n=num, p=2; n > 1 && p < static_cast<T>(sqrt(num))+1; p++ ){
+		T n = num;
+		for( T p=2; n > 1 && p < static_cast<T>(sqrt(num))+1; p++ ){
 			T cnt = 0;
 			for( ; n%p == 0; cnt++ ){
 				n /= p;
@@ -35,8 +36,8 @@ public:
 			if( cnt == 0 ) continue;
 			this->result.push_back(make_pair(p, cnt));
 		}
-		if( this->result.size() == 0 ){
-			this->result.push_back(make_pair(num, 1));
+		if( n != 1 ){
+			this->result.push_back(make_pair(n, 1));
 		}
 	}
 };
@@ -57,8 +58,8 @@ public:
 			if( cnt == 0 ) continue;
 			this->result.push_back(make_pair(p, cnt));
 		}
-		if( this->result.size() == 0 ){
-			this->result.push_back(make_pair(num, 1));
+		if( n != 1 ){
+			this->result.push_back(make_pair(n, 1));
 		}
 	}
 
